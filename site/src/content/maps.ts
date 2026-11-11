@@ -24,6 +24,7 @@ export const fieldWork: Role[] = [
   },
   {
     org: 'Alliance for Urban Rights',
+    href: 'https://www.linkedin.com/company/alliance-urban-rights/home/',
     title: 'Mapping Fellow and Project Assistant',
     points: [
       'Ground-truthing and surveys of katchi abadis (informal settlements) in Islamabad.',

@@ -186,7 +186,16 @@ export function MapsPage() {
             <div className="mp-field">
               {fieldWork.map((r) => (
                 <div key={r.org} className="mp-field__item">
-                  <h3 className="mp-field__org">{r.org}</h3>
+                  <h3 className="mp-field__org">
+                    {r.href ? (
+                      <a className="text-link" href={r.href} rel="noopener" target="_blank">
+                        {r.org}
+                        <span className="sr-only-text"> on LinkedIn (opens in a new tab)</span>
+                      </a>
+                    ) : (
+                      r.org
+                    )}
+                  </h3>
                   <p className="mp-field__title">
                     {r.title}
                     {r.dates && <span className="tabular"> · {r.dates}</span>}

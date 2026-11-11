@@ -43,6 +43,7 @@ export const researchExperience: Role[] = [
   },
   {
     org: 'Alliance for Urban Rights',
+    href: 'https://www.linkedin.com/company/alliance-urban-rights/home/',
     title: 'Mapping Fellow',
     place: 'Islamabad',
     points: [

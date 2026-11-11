@@ -7,6 +7,8 @@ export interface Link {
 
 export interface Role {
   org: string;
+  /** The organisation's own page, when the owner supplied one. */
+  href?: string;
   title: string;
   /** Omitted when the source does not give one. Never guess. */
   place?: string;

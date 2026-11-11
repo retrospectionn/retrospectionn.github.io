@@ -71,7 +71,16 @@ export function ResearchPage() {
       <Section n={2} id="rs-experience" title="Research experience">
         {researchExperience.map((r) => (
           <div key={r.org} className="rs-entry">
-            <h3 className="rs-entry__title">{r.org}</h3>
+            <h3 className="rs-entry__title">
+                    {r.href ? (
+                      <a className="text-link" href={r.href} rel="noopener" target="_blank">
+                        {r.org}
+                        <span className="sr-only-text"> on LinkedIn (opens in a new tab)</span>
+                      </a>
+                    ) : (
+                      r.org
+                    )}
+                  </h3>
             <p className="rs-entry__meta">
               {r.title}
               {r.place && <>, {r.place}</>}
