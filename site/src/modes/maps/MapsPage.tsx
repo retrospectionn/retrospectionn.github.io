@@ -106,7 +106,7 @@ export function MapsPage() {
               <Sym kind="heat" /> Where I map
             </h2>
             <p className="mp-heat__lede">
-              My edits to OpenStreetMap around Islamabad and Rawalpindi. Brighter areas have more edits.
+              My edits to OpenStreetMap across Pakistan. Brighter areas have more edits; zoom in for detail.
             </p>
             <EditHeatmap />
           </section>

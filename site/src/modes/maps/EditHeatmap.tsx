@@ -1,4 +1,4 @@
-// Heatmap of OpenStreetMap edits around Islamabad and Rawalpindi.
+// Heatmap of OpenStreetMap edits across Pakistan. The view cannot leave the country.
 // The data file is an anonymous grid of edit counts (about 150 m cells) baked by
 // `pnpm bake:osm`; it carries no account name, changeset ids or dates.
 // MapLibre and the data load only when the section comes near the viewport.
@@ -15,13 +15,14 @@ type EditPoint = {
 };
 type EditPoints = { type: 'FeatureCollection'; features: EditPoint[] };
 
+// Pakistan's extent; LIMITS adds a small margin so the border is not flush with the frame.
 const VIEW: [[number, number], [number, number]] = [
-  [72.9, 33.5],
-  [73.22, 33.78],
+  [60.87, 23.43],
+  [77.12, 37.09],
 ];
 const LIMITS: [[number, number], [number, number]] = [
-  [72.4, 33.15],
-  [73.8, 34.15],
+  [60.3, 22.9],
+  [77.7, 37.6],
 ];
 
 const C = {
@@ -134,7 +135,7 @@ function buildStyle(data: EditPoints): StyleSpecification {
         source: 'base',
         'source-layer': 'boundary',
         filter: ['all', ['<=', ['get', 'admin_level'], 4], ['!=', ['get', 'maritime'], 1]],
-        paint: { 'line-color': C.boundary, 'line-width': 0.8, 'line-dasharray': [4, 3] },
+        paint: { 'line-color': C.boundary, 'line-width': ['match', ['get', 'admin_level'], 2, 1.2, 0.7], 'line-dasharray': [4, 3] },
       },
       {
         id: 'edits-heat',
@@ -142,8 +143,8 @@ function buildStyle(data: EditPoints): StyleSpecification {
         source: 'edits',
         paint: {
           'heatmap-weight': ['interpolate', ['linear'], ['get', 'w'], 0, 0.05, 1, 1],
-          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 9, 0.55, 11, 0.9, 13.5, 1.5],
-          'heatmap-radius': ['interpolate', ['exponential', 1.6], ['zoom'], 9, 5, 11, 11, 13.5, 32],
+          'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 4, 0.12, 7, 0.3, 9, 0.55, 11, 0.9, 13.5, 1.5],
+          'heatmap-radius': ['interpolate', ['exponential', 1.6], ['zoom'], 4, 3, 7, 4, 9, 5, 11, 11, 13.5, 32],
           'heatmap-opacity': 0.9,
           'heatmap-color': [
             'interpolate',
@@ -169,7 +170,12 @@ function buildStyle(data: EditPoints): StyleSpecification {
         type: 'symbol',
         source: 'base',
         'source-layer': 'place',
-        filter: ['in', ['get', 'class'], ['literal', ['city', 'town', 'suburb']]],
+        filter: [
+          'any',
+          ['==', ['get', 'class'], 'city'],
+          ['all', ['==', ['get', 'class'], 'town'], ['>=', ['zoom'], 8]],
+          ['all', ['==', ['get', 'class'], 'suburb'], ['>=', ['zoom'], 10.5]],
+        ],
         layout: {
           'text-field': name as never,
           'text-font': ['Noto Sans Regular'],
@@ -221,7 +227,7 @@ export function EditHeatmap() {
           bounds: VIEW,
           fitBoundsOptions: { padding: 16 },
           maxBounds: LIMITS,
-          minZoom: 8.5,
+          minZoom: 3,
           maxZoom: 13.5,
           dragRotate: false,
           pitchWithRotate: false,
@@ -265,7 +271,7 @@ export function EditHeatmap() {
         className="mp-heat__frame"
         data-status={status}
         role="region"
-        aria-label="Interactive heatmap of OpenStreetMap edits around Islamabad and Rawalpindi"
+        aria-label="Interactive heatmap of OpenStreetMap edits across Pakistan"
       >
         <div ref={holder} className="mp-heat__map" />
         {status === 'error' && <p className="mp-heat__msg">The map could not be loaded in this browser.</p>}

@@ -20,7 +20,7 @@ Live at <https://retrospectionn.github.io/> (GitHub Pages) and
   roads of Islamabad for Maps.
 - Terrain is baked from AWS Terrain Tiles and roads from OpenStreetMap
   (© OpenStreetMap contributors) by `pnpm bake:dem`.
-- The Maps view has a heatmap of OpenStreetMap edits around Islamabad and Rawalpindi, drawn
+- The Maps view has a heatmap of OpenStreetMap edits across Pakistan (limited to the country), drawn
   with MapLibre GL over OpenFreeMap vector tiles. Its data is an anonymous grid of edit counts
   (about 150 m cells, no account name, ids or dates), baked by `pnpm bake:osm` from the public
   OpenStreetMap API. The account is passed in the `OSM_USER` environment variable and is not

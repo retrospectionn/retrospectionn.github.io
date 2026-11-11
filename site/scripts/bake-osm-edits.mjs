@@ -1,5 +1,5 @@
-// Bakes an anonymous grid of one OpenStreetMap contributor's edits around
-// Islamabad/Rawalpindi into public/data/osm-edits.json.
+// Bakes an anonymous grid of one OpenStreetMap contributor's edits inside Pakistan
+// into public/data/osm-edits.json. Edits outside the country outline are left out.
 // Usage: OSM_USER=<display name> node scripts/bake-osm-edits.mjs
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
@@ -18,7 +18,7 @@ const REPO = join(SITE, '..');
 const CACHE = join(REPO, '.planning', 'osm-cache');
 const OUT = join(SITE, 'public', 'data', 'osm-edits.json');
 
-const W = 72.75, S = 33.4, E = 73.45, N = 33.9;
+const W = 60.8, S = 23.5, E = 77.9, N = 37.2; // box around Pakistan
 const CELL = 0.0015;
 const API = 'https://api.openstreetmap.org/api/0.6';
 const HEADERS = { 'User-Agent': 'portfolio-heatmap-bake/1.0' };
@@ -64,10 +64,28 @@ for (;;) {
   if (!added) break;
 }
 
-// 2-5. Download each changeset and collect points.
+// Country outline (OpenStreetMap, via Nominatim), cached. Used to keep only edits inside Pakistan.
 await mkdir(CACHE, { recursive: true });
+const outlineFile = join(CACHE, 'pakistan-outline.json');
+if (!existsSync(outlineFile)) {
+  await writeFile(outlineFile, await get('https://nominatim.openstreetmap.org/search?country=Pakistan&featuretype=country&polygon_geojson=1&polygon_threshold=0.005&format=json&limit=1'));
+}
+const geo = JSON.parse(await readFile(outlineFile, 'utf8'))[0].geojson;
+const polygons = geo.type === 'Polygon' ? [geo.coordinates] : geo.coordinates;
+const inRing = (lon, lat, ring) => {
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const [xi, yi] = ring[i], [xj, yj] = ring[j];
+    if (yi > lat !== yj > lat && lon < ((xj - xi) * (lat - yi)) / (yj - yi) + xi) inside = !inside;
+  }
+  return inside;
+};
+const inCountry = (lon, lat) =>
+  polygons.some((p) => inRing(lon, lat, p[0]) && !p.slice(1).some((hole) => inRing(lon, lat, hole)));
+
+// 2-5. Download each changeset and collect points.
 const grid = new Map();
-const inBox = (lon, lat) => lon >= W && lon <= E && lat >= S && lat <= N;
+const inBox = (lon, lat) => lon >= W && lon <= E && lat >= S && lat <= N && inCountry(lon, lat);
 const add = (lon, lat, n) => {
   const ix = Math.floor((lon - W) / CELL), iy = Math.floor((lat - S) / CELL);
   const k = iy * 100000 + ix;
