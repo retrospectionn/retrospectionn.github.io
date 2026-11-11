@@ -12,8 +12,10 @@ import {
   volunteering,
 } from '../../content/maps';
 import { profile } from '../../content/profile';
+import { EditHeatmap } from './EditHeatmap';
 
 const legend = [
+  { id: 'mp-edits', sym: 'heat', label: 'Where I map' },
   { id: 'mp-projects', sym: 'square', label: 'Projects' },
   { id: 'mp-articles', sym: 'circle', label: 'Maps and articles' },
   { id: 'mp-field', sym: 'triangle', label: 'Field work' },
@@ -92,13 +94,23 @@ export function MapsPage() {
               <a className="text-link" href={profile.links.codeForPakistan.href} rel="noopener" target="_blank">
                 Code for Pakistan
                 <span className="sr-only-text"> (opens in a new tab)</span>
-              </a>
-              .
+              </a>{' '}
+              and OpenStreetMap Community Pakistan.
             </p>
           </div>
         </aside>
 
         <div className="mp-main">
+          <section id="mp-edits" className="mp-section" aria-labelledby="mp-edits-title">
+            <h2 id="mp-edits-title" className="mp-section__title">
+              <Sym kind="heat" /> Where I map
+            </h2>
+            <p className="mp-heat__lede">
+              My edits to OpenStreetMap around Islamabad and Rawalpindi. Brighter areas have more edits.
+            </p>
+            <EditHeatmap />
+          </section>
+
           <section id="mp-projects" className="mp-section" aria-labelledby="mp-projects-title">
             <h2 id="mp-projects-title" className="mp-section__title">
               <Sym kind="square" /> Projects
@@ -179,11 +191,13 @@ export function MapsPage() {
                     {r.title}
                     {r.dates && <span className="tabular"> · {r.dates}</span>}
                   </p>
-                  <ul className="mp-field__points">
-                    {r.points.map((p) => (
-                      <li key={p}>{p}</li>
-                    ))}
-                  </ul>
+                  {r.points.length > 0 && (
+                    <ul className="mp-field__points">
+                      {r.points.map((p) => (
+                        <li key={p}>{p}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               ))}
             </div>

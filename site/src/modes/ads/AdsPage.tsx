@@ -1,6 +1,6 @@
 // Ads — "control room". Dark ink, amber accent, Geist with Geist Mono tabular figures.
-// Order (PLAN 6): hero, KPI strip, experience timeline, what I do, toolkit, StrataTech, contact.
-import { adsHero, credentials, experience, kpis, services, strataTech, tools } from '../../content/ads';
+// Order: hero, KPI strip, experience timeline, what I do, toolkit, contact.
+import { adsHero, credentials, experience, kpis, services, tools } from '../../content/ads';
 import { profile } from '../../content/profile';
 
 export function AdsPage() {
@@ -67,11 +67,13 @@ export function AdsPage() {
                     ))}
                   </ul>
                 )}
-                <ul className="ads-role__points">
-                  {r.points.map((p) => (
-                    <li key={p}>{p}</li>
-                  ))}
-                </ul>
+                {r.points.length > 0 && (
+                  <ul className="ads-role__points">
+                    {r.points.map((p) => (
+                      <li key={p}>{p}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </li>
           ))}
@@ -119,25 +121,9 @@ export function AdsPage() {
         </p>
       </section>
 
-      <section className="ads-section" aria-labelledby="ads-now-title">
-        <header className="ads-section__head">
-          <span className="ads-section__index tabular">04</span>
-          <h2 id="ads-now-title" className="ads-section__title">
-            Now
-          </h2>
-        </header>
-        <div className="ads-now">
-          <p className="ads-now__label">Current venture</p>
-          <h3 className="ads-now__org">{strataTech.org}</h3>
-          <p className="ads-now__meta tabular">
-            {strataTech.title} · {strataTech.place} · {strataTech.dates}
-          </p>
-        </div>
-      </section>
-
       <section className="ads-section ads-contact" aria-labelledby="ads-contact-title">
         <header className="ads-section__head">
-          <span className="ads-section__index tabular">05</span>
+          <span className="ads-section__index tabular">04</span>
           <h2 id="ads-contact-title" className="ads-section__title">
             Contact
           </h2>

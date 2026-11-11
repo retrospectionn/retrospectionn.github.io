@@ -18,27 +18,26 @@ export const kpis: Kpi[] = [
   { value: '65+', label: 'A+ content sections', source: 'Code Informatics' },
 ];
 
-/** StrataTech: role, place and date only until the owner describes it (PLAN G3). */
-export const strataTech = {
-  org: 'StrataTech',
-  title: 'Founder, freelance',
-  place: 'Pakistan',
-  dates: 'Jan 2026 – present',
-};
-
-/** Employment timeline. StrataTech is shown in its own block (above), not repeated here. */
+/** Employment timeline, newest first. StrataTech has no description yet: the owner has not supplied one. */
 export const experience: Role[] = [
+  {
+    org: 'StrataTech',
+    title: 'CEO and Founder',
+    place: 'Pakistan',
+    dates: 'Jan 2026 – present',
+    points: [],
+  },
   {
     org: 'Upcounting Inc.',
     title: 'Account Manager',
     place: 'Remote, Canada',
-    dates: 'Jan 2024 – present',
+    dates: 'Jan 2024 – Dec 2025',
     points: [
-      'Manages over $55,000 in monthly ad spend across 8 accounts, with over $475,000 in sales across international marketplaces.',
+      'Managed over $55,000 in monthly ad spend across 8 accounts, with over $475,000 in sales across international marketplaces.',
       'Raised account profitability by 29% for a large spa product-line brand.',
-      'Uses a white-label machine-learning PPC toolkit, combining branded targeting with high-organic-opportunity keywords.',
-      'Leads daily strategic and technical updates with North American clients.',
-      'Works from Inventory, Brand Insight and FBA reports to improve ad performance.',
+      'Used a white-label machine-learning PPC toolkit, combining branded targeting with high-organic-opportunity keywords.',
+      'Led daily strategic and technical updates with North American clients.',
+      'Worked from Inventory, Brand Insight and FBA reports to improve ad performance.',
     ],
     chips: ['$55k+/mo spend', '8 accounts', '$475k+ sales', '+29% profitability'],
   },

@@ -39,6 +39,11 @@ export const fieldWork: Role[] = [
       'With Faizan Khattak, a workable map of Islamabad’s public transport.',
     ],
   },
+  {
+    org: 'OpenStreetMap Community Pakistan',
+    title: 'Volunteer',
+    points: [],
+  },
 ];
 
 export const highlights: { title: string; body: string }[] = [

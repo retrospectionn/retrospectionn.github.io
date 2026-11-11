@@ -42,6 +42,16 @@ export const researchExperience: Role[] = [
     ],
   },
   {
+    org: 'Alliance for Urban Rights',
+    title: 'Mapping Fellow',
+    place: 'Islamabad',
+    points: [
+      'Ground-truthing and surveys of katchi abadis (informal settlements) in Islamabad.',
+      'Interviews with residents about the facilities available to each abadi.',
+      'Cleaned and validated survey data and finalised the reports.',
+    ],
+  },
+  {
     org: 'Surveys on bilingualism and creativity',
     title: 'Academic project',
     points: [],

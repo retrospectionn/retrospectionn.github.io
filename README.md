@@ -20,6 +20,11 @@ Live at <https://retrospectionn.github.io/> (GitHub Pages) and
   roads of Islamabad for Maps.
 - Terrain is baked from AWS Terrain Tiles and roads from OpenStreetMap
   (© OpenStreetMap contributors) by `pnpm bake:dem`.
+- The Maps view has a heatmap of OpenStreetMap edits around Islamabad and Rawalpindi, drawn
+  with MapLibre GL over OpenFreeMap vector tiles. Its data is an anonymous grid of edit counts
+  (about 150 m cells, no account name, ids or dates), baked by `pnpm bake:osm` from the public
+  OpenStreetMap API. The account is passed in the `OSM_USER` environment variable and is not
+  stored in the repository.
 
 ## Layout
 
@@ -45,5 +50,8 @@ or any root file it did not write.
 
 ## Changes
 
+- **2026-11-12** — Experience updated (StrataTech added as the current role, Upcounting dates
+  closed), volunteer and fellowship entries added to Maps and Research, and the edit heatmap
+  added to Maps.
 - **2026-11-11** — First version: the three views, the shared particle field and the
   Islamabad terrain.

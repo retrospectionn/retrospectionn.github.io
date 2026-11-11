@@ -324,34 +324,6 @@
   font-size: 0.9375rem;
 }
 
-/* StrataTech */
-.ads-now {
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  border-radius: var(--radius);
-  background: var(--surface);
-  padding: 1.5rem;
-}
-.ads-now__label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-}
-.ads-now__org {
-  margin-top: 0.5rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-.ads-now__meta {
-  margin-top: 0.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  color: var(--muted);
-}
-
 .ads-contact__text {
   color: var(--muted);
   margin-bottom: 1.25rem;
