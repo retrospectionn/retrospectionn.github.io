@@ -83,6 +83,31 @@ const inRing = (lon, lat, ring) => {
 const inCountry = (lon, lat) =>
   polygons.some((p) => inRing(lon, lat, p[0]) && !p.slice(1).some((hole) => inRing(lon, lat, hole)));
 
+// A simplified copy of the outline for the page (label filter and the dimmed surround).
+const simplify = (pts, tol) => {
+  const keep = new Uint8Array(pts.length);
+  keep[0] = keep[pts.length - 1] = 1;
+  const stack = [[0, pts.length - 1]];
+  while (stack.length) {
+    const [a, b] = stack.pop();
+    const [ax, ay] = pts[a], [bx, by] = pts[b];
+    const dx = bx - ax, dy = by - ay, len = Math.hypot(dx, dy) || 1e-12;
+    let worst = -1, far = 0;
+    for (let i = a + 1; i < b; i++) {
+      const d = Math.abs(dy * (pts[i][0] - ax) - dx * (pts[i][1] - ay)) / len;
+      if (d > far) { far = d; worst = i; }
+    }
+    if (far > tol) { keep[worst] = 1; stack.push([a, worst], [worst, b]); }
+  }
+  return pts.filter((_, i) => keep[i]).map(([x, y]) => [+x.toFixed(3), +y.toFixed(3)]);
+};
+const outer = polygons.map((p) => p[0]).sort((a, b) => b.length - a.length)[0];
+const half = Math.floor(outer.length / 2);
+const ring = [...simplify(outer.slice(0, half + 1), 0.02), ...simplify(outer.slice(half), 0.02).slice(1)];
+const OUTLINE = join(SITE, 'public', 'data', 'pakistan-outline.json');
+await writeFile(OUTLINE, JSON.stringify({ type: 'Polygon', coordinates: [ring] }));
+console.log(`outline: ${ring.length} points`);
+
 // 2-5. Download each changeset and collect points.
 const grid = new Map();
 const inBox = (lon, lat) => lon >= W && lon <= E && lat >= S && lat <= N && inCountry(lon, lat);

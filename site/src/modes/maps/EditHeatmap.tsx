@@ -13,16 +13,18 @@ type EditPoint = {
   properties: { w: number };
   geometry: { type: 'Point'; coordinates: [number, number] };
 };
+type Outline = { type: 'Polygon'; coordinates: [number, number][][] };
 type EditPoints = { type: 'FeatureCollection'; features: EditPoint[] };
 
-// Pakistan's extent; LIMITS adds a small margin so the border is not flush with the frame.
+// Pakistan's extent. LIMITS is wider east-west so the whole country fits a wide frame;
+// the area outside the outline is dimmed and carries no labels or edits.
 const VIEW: [[number, number], [number, number]] = [
   [60.87, 23.43],
   [77.12, 37.09],
 ];
 const LIMITS: [[number, number], [number, number]] = [
-  [60.3, 22.9],
-  [77.7, 37.6],
+  [55.5, 22.4],
+  [82.5, 38.1],
 ];
 
 const C = {
@@ -59,7 +61,19 @@ function toGeoJSON(grid: EditGrid): EditPoints {
   return { type: 'FeatureCollection', features };
 }
 
-function buildStyle(data: EditPoints): StyleSpecification {
+function buildStyle(data: EditPoints, outline: Outline): StyleSpecification {
+  // Everything outside the country: one world-sized polygon with Pakistan cut out of it.
+  const surround = {
+    type: 'Feature' as const,
+    properties: {},
+    geometry: {
+      type: 'Polygon' as const,
+      coordinates: [
+        [[-180, -85], [180, -85], [180, 85], [-180, 85], [-180, -85]] as [number, number][],
+        outline.coordinates[0]!,
+      ],
+    },
+  };
   const name = ['coalesce', ['get', 'name:en'], ['get', 'name_en'], ['get', 'name:latin'], ['get', 'name']];
   return {
     version: 8,
@@ -72,6 +86,7 @@ function buildStyle(data: EditPoints): StyleSpecification {
           '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> · <a href="https://www.openmaptiles.org/" target="_blank" rel="noopener">© OpenMapTiles</a> · <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap contributors</a>',
       },
       edits: { type: 'geojson', data },
+      surround: { type: 'geojson', data: surround },
     },
     layers: [
       { id: 'bg', type: 'background', paint: { 'background-color': C.bg } },
@@ -137,6 +152,7 @@ function buildStyle(data: EditPoints): StyleSpecification {
         filter: ['all', ['<=', ['get', 'admin_level'], 4], ['!=', ['get', 'maritime'], 1]],
         paint: { 'line-color': C.boundary, 'line-width': ['match', ['get', 'admin_level'], 2, 1.2, 0.7], 'line-dasharray': [4, 3] },
       },
+      { id: 'surround', type: 'fill', source: 'surround', paint: { 'fill-color': C.bg, 'fill-opacity': 0.72 } },
       {
         id: 'edits-heat',
         type: 'heatmap',
@@ -171,11 +187,15 @@ function buildStyle(data: EditPoints): StyleSpecification {
         source: 'base',
         'source-layer': 'place',
         filter: [
+          'all',
+          ['within', outline],
+          [
           'any',
           ['==', ['get', 'class'], 'city'],
           ['all', ['==', ['get', 'class'], 'town'], ['>=', ['zoom'], 8]],
           ['all', ['==', ['get', 'class'], 'suburb'], ['>=', ['zoom'], 10.5]],
-        ],
+          ],
+        ] as never,
         layout: {
           'text-field': name as never,
           'text-font': ['Noto Sans Regular'],
@@ -211,19 +231,22 @@ export function EditHeatmap() {
     const start = async () => {
       setStatus('loading');
       try {
-        const [lib, grid] = await Promise.all([
+        const json = <T,>(file: string) =>
+          fetch(`${import.meta.env.BASE_URL}data/${file}`).then((r) => {
+            if (!r.ok) throw new Error(`${file} ${r.status}`);
+            return r.json() as Promise<T>;
+          });
+        const [lib, grid, outline] = await Promise.all([
           import('maplibre-gl'),
-          fetch(`${import.meta.env.BASE_URL}data/osm-edits.json`).then((r) => {
-            if (!r.ok) throw new Error(`edit grid ${r.status}`);
-            return r.json() as Promise<EditGrid>;
-          }),
+          json<EditGrid>('osm-edits.json'),
+          json<Outline>('pakistan-outline.json'),
           import('maplibre-gl/dist/maplibre-gl.css'),
         ]);
         if (cancelled) return;
         lib.setWorkerUrl(workerUrl);
         map = new lib.Map({
           container: target,
-          style: buildStyle(toGeoJSON(grid)),
+          style: buildStyle(toGeoJSON(grid), outline),
           bounds: VIEW,
           fitBoundsOptions: { padding: 16 },
           maxBounds: LIMITS,
