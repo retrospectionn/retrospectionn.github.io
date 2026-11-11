@@ -1,0 +1,153 @@
+{
+  "source": "https://medium.com/feed/@CasualVisionary",
+  "posts": [
+    {
+      "slug": "launching-simyourcity-an-amenity-landuse-and-route-data-visualizer",
+      "title": "Launching SimYourCity, an amenity, landuse and route data visualizer",
+      "link": "https://medium.com/@CasualVisionary/launching-simyourcity-an-amenity-landuse-and-route-data-visualizer-1abdb7054bc2",
+      "date": "2026-10-12",
+      "tags": [
+        "data-visualization",
+        "data-science",
+        "gis",
+        "remote-sensing",
+        "openstreetmap"
+      ],
+      "cover": "/media/medium-launching-simyourcity-an-amenity-landuse-and-route-data-visualizer.webp",
+      "coverSource": "https://cdn-images-1.medium.com/max/1024/1*z6_FRS5q-pbPesty_y-wCw.png"
+    },
+    {
+      "slug": "how-i-won-the-flood-pk-hackathon",
+      "title": "How I Won The Flood.pk Hackathon",
+      "link": "https://medium.com/@CasualVisionary/how-i-won-the-flood-pk-hackathon-fa535eebd601",
+      "date": "2025-12-28",
+      "tags": [
+        "gis",
+        "qgis",
+        "satellite-imagery",
+        "hackathons",
+        "floods"
+      ],
+      "cover": "/media/medium-how-i-won-the-flood-pk-hackathon.webp",
+      "coverSource": "https://cdn-images-1.medium.com/max/800/1*dOZNBazixZVoMVvK3jnoYA.gif"
+    },
+    {
+      "slug": "using-night-time-imagery-to-save-turtles-in-karachis-coasts",
+      "title": "Using night-time imagery to save turtles in Karachi’s coasts",
+      "link": "https://medium.com/@CasualVisionary/using-night-time-imagery-to-save-turtles-in-karachis-coasts-4fa1af5e95e7",
+      "date": "2025-06-04",
+      "tags": [
+        "ecology",
+        "mapping",
+        "karachi",
+        "qgis",
+        "gis"
+      ],
+      "cover": "/media/medium-using-night-time-imagery-to-save-turtles-in-karachis-coasts.webp",
+      "coverSource": "https://cdn-images-1.medium.com/max/681/1*BcC046sZwPNo-cOKzdNMcg.gif"
+    },
+    {
+      "slug": "the-lahorification-of-rawalpindi",
+      "title": "The Lahorification of Rawalpindi",
+      "link": "https://medium.com/@CasualVisionary/the-lahorification-of-rawalpindi-6ac86d5e2385",
+      "date": "2024-10-18",
+      "tags": [
+        "gis",
+        "air-quality",
+        "mapping",
+        "urban-planning",
+        "islamabad"
+      ],
+      "cover": "/media/medium-the-lahorification-of-rawalpindi.webp",
+      "coverSource": "https://cdn-images-1.medium.com/max/553/1*v2yn1T05iMmQdjMY58ORiA.png"
+    },
+    {
+      "slug": "visualizing-forest-fires-in-the-margalla-hills-using-ndvi",
+      "title": "Visualizing Forest Fires in the Margalla Hills using NDVI",
+      "link": "https://medium.com/@CasualVisionary/visualizing-forest-fires-in-the-margalla-hills-using-ndvi-857e7ec8b1a4",
+      "date": "2024-08-28",
+      "tags": [
+        "gis",
+        "maps",
+        "visualization",
+        "islamabad",
+        "ndvi"
+      ],
+      "cover": "/media/medium-visualizing-forest-fires-in-the-margalla-hills-using-ndvi.webp",
+      "coverSource": "https://cdn-images-1.medium.com/max/1024/1*LghjTNxydfAbMP7jxFiQpw.gif"
+    },
+    {
+      "slug": "a-proposal-for-the-facilitation-of-redesigning-urban-spaces-in-city-saddar-rawalpindi",
+      "title": "A proposal for the facilitation of redesigning urban spaces in City Saddar Rawalpindi",
+      "link": "https://medium.com/@CasualVisionary/a-proposal-for-the-facilitation-of-redesigning-urban-spaces-in-city-saddar-rawalpindi-fe7dc8f58e6e",
+      "date": "2024-03-09",
+      "tags": [
+        "rawalpindi",
+        "walkability",
+        "urban-design",
+        "urban-planning"
+      ],
+      "cover": "/media/medium-a-proposal-for-the-facilitation-of-redesigning-urban-spaces-in-city-saddar-rawalpindi.webp",
+      "coverSource": "https://cdn-images-1.medium.com/max/960/1*b-Pb6eZhoWonZD0_pLmY6w.jpeg"
+    },
+    {
+      "slug": "creating-urban-cartographic-maps-using-rcities",
+      "title": "Creating Urban cartographic maps using rcities data package",
+      "link": "https://medium.com/@CasualVisionary/creating-urban-cartographic-maps-using-rcities-ad875242a5ea",
+      "date": "2023-04-04",
+      "tags": [
+        "open-data",
+        "openstreetmap",
+        "gis",
+        "rstudio",
+        "open-source-software"
+      ],
+      "cover": "/media/medium-creating-urban-cartographic-maps-using-rcities.webp",
+      "coverSource": "https://cdn-images-1.medium.com/max/611/1*emIo5y8W6hpVn8sefSnKFw.png"
+    },
+    {
+      "slug": "thoughts-on-brexit-and-sovereignty",
+      "title": "Thoughts on Brexit and sovereignty",
+      "link": "https://medium.com/tasdeek/thoughts-on-brexit-and-sovereignty-3a25512530dc",
+      "date": "2021-02-08",
+      "tags": [
+        "pakistan",
+        "democracy",
+        "brexit",
+        "united-kingdom",
+        "sovereignty"
+      ],
+      "cover": "/media/medium-thoughts-on-brexit-and-sovereignty.webp",
+      "coverSource": "https://cdn-images-1.medium.com/max/1024/1*9-Fxm0grX_Dv-e7GC7yBVA.jpeg"
+    },
+    {
+      "slug": "improving-pakistani-cities-through-data",
+      "title": "Improving Pakistani cities through data",
+      "link": "https://medium.com/@CasualVisionary/improving-pakistani-cities-through-data-fcd9d1a1fe90",
+      "date": "2020-01-16",
+      "tags": [
+        "pakistan",
+        "cities",
+        "data",
+        "sustainable",
+        "sustainable-goals"
+      ],
+      "cover": "/media/medium-improving-pakistani-cities-through-data.webp",
+      "coverSource": "https://cdn-images-1.medium.com/max/1024/1*GqvhfJVppvDJDZVvr-imQQ.png"
+    },
+    {
+      "slug": "policy-brief-for-public-procurement-regulatory-authority",
+      "title": "Policy Brief for Public Procurement Regulatory Authority",
+      "link": "https://medium.com/@CasualVisionary/policy-brief-for-public-procurement-regulatory-authority-cc079b0acfff",
+      "date": "2020-01-12",
+      "tags": [
+        "policy-brief",
+        "pakistan",
+        "public-procurement",
+        "open-data"
+      ],
+      "cover": "/media/medium-policy-brief-for-public-procurement-regulatory-authority.webp",
+      "coverSource": "https://cdn-images-1.medium.com/max/1024/1*CFZu6zIK4aPhL5pXiC_eng.jpeg"
+    }
+  ]
+}

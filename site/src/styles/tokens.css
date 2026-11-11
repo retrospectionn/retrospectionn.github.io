@@ -1,0 +1,100 @@
+/*
+  Theme tokens. One set per mode on html[data-mode]. The 3D scene (phase 3) should read
+  --scene-a / --scene-b / --scene-c and --scene-blend from here so colours stay in one place.
+
+  Contrast (WCAG AA; computed, lowest of --bg / --surface):
+    ads       text 14.7:1, muted 6.7:1, accent 8.9:1, accent-ink on accent 9.2:1
+    research  text 15.2:1, muted 6.3:1 (on surface-2), accent 7.0:1, accent-ink on accent 8.1:1
+    maps      text 14.2:1, muted 7.2:1, accent 10.8:1, accent-ink on accent 10.6:1
+*/
+
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --dur-press: 140ms;
+  --dur-toggle: 220ms;
+  --dur-theme: 400ms;
+  --dur-enter: 280ms;
+  --topbar-h: 3.5rem;
+}
+
+html[data-mode='ads'],
+html:not([data-mode]) {
+  color-scheme: dark;
+  --bg: #0c0e11;
+  --surface: #14171c;
+  --surface-2: #1b1f26;
+  --text: #ece8e0;
+  --muted: #a39e94;
+  --accent: #f5a623;
+  --accent-ink: #1a1204;
+  --accent-soft: rgb(245 166 35 / 0.12);
+  --border: #2a2f37;
+  --focus: #ffd27a;
+  --font-body: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --toggle-bg: #14171c;
+  --toggle-active-bg: #f5a623;
+  --toggle-active-text: #1a1204;
+  --scene-a: #f5a623;
+  --scene-b: #ffcf7a;
+  --scene-c: #6b5a3a;
+  --scene-blend: additive;
+}
+
+html[data-mode='research'] {
+  color-scheme: light;
+  --bg: #f6f1e7;
+  --surface: #fbf8f2;
+  --surface-2: #efe8da;
+  --text: #1f1b16;
+  --muted: #5b5247;
+  --accent: #8a2b1d;
+  --accent-ink: #fbf8f2;
+  --accent-soft: rgb(138 43 29 / 0.08);
+  --border: #d8cdb9;
+  --focus: #8a2b1d;
+  --font-body: 'Newsreader Variable', 'Iowan Old Style', Georgia, serif;
+  --font-display: 'Newsreader Variable', 'Iowan Old Style', Georgia, serif;
+  --font-label: 'Source Sans 3 Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Source Sans 3 Variable', ui-sans-serif, system-ui, sans-serif;
+  --radius: 2px;
+  --radius-sm: 2px;
+  --toggle-bg: #efe8da;
+  --toggle-active-bg: #1f1b16;
+  --toggle-active-text: #f6f1e7;
+  --scene-a: #1f1b16;
+  --scene-b: #8a2b1d;
+  --scene-c: #5b5247;
+  --scene-blend: normal;
+}
+
+html[data-mode='maps'] {
+  color-scheme: dark;
+  --bg: #0a1310;
+  --surface: #0f1c16;
+  --surface-2: #14261d;
+  --text: #dfeae3;
+  --muted: #94ab9e;
+  --accent: #8fdcab;
+  --accent-ink: #062014;
+  --accent-soft: rgb(143 220 171 / 0.1);
+  --contour: #d9b25c;
+  --border: #23392e;
+  --focus: #e9cf8a;
+  --font-body: 'IBM Plex Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'IBM Plex Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --radius: 4px;
+  --radius-sm: 3px;
+  --toggle-bg: #0f1c16;
+  --toggle-active-bg: #8fdcab;
+  --toggle-active-text: #062014;
+  --scene-a: #8fdcab;
+  --scene-b: #d9b25c;
+  --scene-c: #2f5a45;
+  --scene-blend: additive;
+}

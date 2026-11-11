@@ -1,0 +1,23 @@
+{
+  "siteName": "Ammaz Khan",
+  "modes": {
+    "ads": {
+      "label": "Ads",
+      "role": "Amazon Ads Specialist",
+      "title": "Ammaz Khan — Amazon Ads Specialist",
+      "description": "Amazon PPC, listings and brand stores. Account management across US, UK and international marketplaces."
+    },
+    "research": {
+      "label": "Research",
+      "role": "Researcher",
+      "title": "Ammaz Khan — Researcher",
+      "description": "MA in Politics, Economics and Philosophy (HSE Moscow). Policy research, fieldwork and surveys in Pakistan."
+    },
+    "maps": {
+      "label": "Maps",
+      "role": "Mapper",
+      "title": "Ammaz Khan — Mapper",
+      "description": "OpenStreetMap contributor since 2018. Open-source GIS tools and maps of Islamabad and Rawalpindi."
+    }
+  }
+}

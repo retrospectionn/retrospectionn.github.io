@@ -1,0 +1,161 @@
+@import 'tailwindcss';
+@import './tokens.css';
+@import './shell.css';
+@import './ads.css';
+@import './research.css';
+@import './maps.css';
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-line: var(--border);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+html {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-padding-top: calc(var(--topbar-h) + 1rem);
+}
+
+body {
+  min-height: 100dvh;
+  /* A very long word (URL, product name) breaks instead of widening its grid column. */
+  overflow-wrap: anywhere;
+  background-color: var(--bg);
+  /* Theme cross-fade on mode change (PLAN motion step 3). Colour only. */
+  transition:
+    background-color var(--dur-theme) var(--ease-out),
+    color var(--dur-theme) var(--ease-out);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+a {
+  color: inherit;
+}
+
+:where(a, button, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  padding: 0.5rem 0.875rem;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 0.5rem;
+}
+
+.sr-only-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Page content entrance and exit, driven by motion's AnimatePresence. */
+.mode-page {
+  position: relative;
+  z-index: 1;
+}
+
+/*
+  Hero entrance. Plays once each time a mode page mounts (first load or a mode switch), never
+  on scroll. Lead and support items rise 8px and fade in; decoration (.enter--fade) only fades.
+  Gaps shrink down the group (50, 45, 40, 35 ms) so it reads as one wave, and the whole group
+  lands within about 450 ms. Nothing waits on it: every item is clickable as soon as it shows.
+*/
+@keyframes enter-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@keyframes enter-fade {
+  from {
+    opacity: 0;
+  }
+}
+.enter {
+  animation: enter-rise var(--dur-enter) var(--ease-out) both;
+}
+.enter--fade {
+  animation-name: enter-fade;
+}
+.enter--1 {
+  animation-delay: 50ms;
+}
+.enter--2 {
+  animation-delay: 95ms;
+}
+.enter--3 {
+  animation-delay: 135ms;
+}
+.enter--4 {
+  animation-delay: 170ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the fade, drop the movement and the stagger: the group appears together. */
+  .enter {
+    animation-name: enter-fade;
+    animation-delay: 0ms;
+  }
+  /* Press feedback is movement too. !important beats the toggle's high-specificity copies. */
+  .ads-button:active,
+  .mp-tile__link:active,
+  .mp-legend__item:active,
+  .topbar__name:active,
+  .topbar__link:active,
+  .mode-toggle__segment:active,
+  .mode-toggle__list--active .mode-toggle__segment {
+    transform: none !important;
+  }
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.text-link {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+}
+@media (hover: hover) and (pointer: fine) {
+  .text-link:hover {
+    text-decoration-color: currentColor;
+  }
+}

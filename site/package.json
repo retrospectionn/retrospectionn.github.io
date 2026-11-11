@@ -1,0 +1,41 @@
+{
+  "name": "ammazkhan-portfolio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build && node scripts/postbuild.mjs",
+    "preview": "vite preview",
+    "sync": "node scripts/sync-content.mjs",
+    "bake:dem": "node scripts/bake-dem.mjs public/data",
+    "bake:osm": "node scripts/bake-osm-edits.mjs",
+    "og": "node scripts/og-images.mjs",
+    "publish:pages": "node scripts/publish-pages.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "5.3.0",
+    "@fontsource-variable/geist-mono": "5.3.0",
+    "@fontsource-variable/ibm-plex-sans": "5.3.0",
+    "@fontsource-variable/newsreader": "5.3.0",
+    "@fontsource-variable/source-sans-3": "5.3.1",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@react-three/fiber": "9.8.2",
+    "motion": "14.12.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "three": "0.187.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.5",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/three": "0.187.0",
+    "@vitejs/plugin-react": "6.3.0",
+    "sharp": "0.35.5",
+    "tailwindcss": "4.3.5",
+    "typescript": "7.0.2",
+    "vite": "8.3.7"
+  }
+}
