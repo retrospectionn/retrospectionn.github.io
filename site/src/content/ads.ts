@@ -29,7 +29,7 @@ export const experience: Role[] = [
   },
   {
     org: 'Upcounting Inc.',
-    title: 'Account Manager',
+    title: 'Account Manager, after a year as PPC Specialist',
     place: 'Remote, Canada',
     dates: 'Jan 2024 – Dec 2025',
     points: [
@@ -42,7 +42,9 @@ export const experience: Role[] = [
   },
   {
     org: 'Upscale Valley Pvt. Ltd.',
-    title: 'Amazon Executive',
+    title: 'Amazon Executive (contract)',
+    place: 'Remote, Lahore',
+    dates: 'Sep 2023 – Nov 2023',
     points: [
       'Launched 10 products across 4 brands in the UK and US.',
       'Ran market analysis in DataDive for 10 niche products.',
@@ -59,6 +61,7 @@ export const experience: Role[] = [
     points: [
       'Led the Amazon presence toward a $1.2 million valuation.',
       'Raised average ROAS to 2.3 and introduced budget controls.',
+      'Forecast and analysed business performance, with real-time monitoring through third-party tools on the Amazon API.',
       'Over $300,000 in monthly sales during peak season; 400+ campaigns across 70+ products.',
       'Gave guest lectures for students at an affiliated company.',
     ],
@@ -67,7 +70,7 @@ export const experience: Role[] = [
     org: 'Code Informatics Pvt. Ltd.',
     title: 'Senior Amazon Accounts Executive, Team Lead',
     place: 'Islamabad',
-    dates: 'Jun 2019 – Jun 2022',
+    dates: 'Jul 2019 – Mar 2022',
     points: [
       'Led an international accounts team of 4.',
       'Launched and optimised 35+ brand stores; built 65+ A+ / Enhanced Brand Content sections.',
@@ -75,6 +78,19 @@ export const experience: Role[] = [
       'Ran training on advanced Excel, conflict management and communication.',
     ],
   },
+];
+
+/** Roles before Amazon work, shown as one line each. Dates and places from LinkedIn. */
+export const earlierRoles: Role[] = [
+  {
+    org: 'Sustainable Development Policy Institute (SDPI)',
+    title: 'Project Assistant',
+    place: 'Islamabad',
+    dates: 'Nov 2018 – Aug 2019',
+    points: [],
+  },
+  { org: "Domino's", title: 'In-store Staff', place: 'Stirling', dates: 'Oct 2017 – Jun 2018', points: [] },
+  { org: 'Special Greetings', title: 'Sales Assistant', place: 'Stirling', dates: 'Aug 2016 – Jul 2017', points: [] },
 ];
 
 export const services: Service[] = [
@@ -118,4 +134,24 @@ export const tools: string[] = [
   'Canva',
 ];
 
-export const credentials = [{ name: 'McKinsey Forward Program', year: '2024' }];
+/** Certifications from LinkedIn, newest first. Links go to each issuer's own verification page. */
+export const credentials: { name: string; issuer: string; when: string; href: string }[] = [
+  {
+    name: 'Amazon Ads Retail Certification',
+    issuer: 'Amazon Ads',
+    when: 'Nov 2025, valid to Nov 2027',
+    href: 'https://learningconsole.amazonadvertising.com/student/award/ox5YWwP4rzq1Xk2jMHFw2gJD',
+  },
+  {
+    name: 'McKinsey Forward Program',
+    issuer: 'McKinsey & Company',
+    when: 'Apr 2024',
+    href: 'https://www.credly.com/badges/9c7fce79-27af-4714-a2f9-1b579f7ac445',
+  },
+  {
+    name: 'Amazon Advertising Foundations Certification',
+    issuer: 'Amazon Ads',
+    when: 'Sep 2023',
+    href: 'https://learningconsole.amazonadvertising.com/student/award/oK7ZWpZa9ndCUjELaMtFa9AA',
+  },
+];

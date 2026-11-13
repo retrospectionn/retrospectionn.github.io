@@ -290,10 +290,65 @@
 .ads-tools__sep {
   color: var(--muted);
 }
-.ads-cred {
-  margin-top: 1rem;
-  color: var(--muted);
+/* Earlier roles: one quiet line each under the main timeline. */
+.ads-earlier__title {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
   font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.ads-earlier {
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+}
+.ads-earlier__row {
+  display: grid;
+  gap: 0 2rem;
+}
+@media (min-width: 48rem) {
+  .ads-earlier__row {
+    grid-template-columns: 12rem minmax(0, 1fr);
+  }
+}
+.ads-earlier__when {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+.ads-earlier__org {
+  font-weight: 500;
+}
+
+.ads-certs {
+  display: grid;
+  gap: 1.25rem 2rem;
+}
+@media (min-width: 48rem) {
+  .ads-certs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.ads-cert {
+  display: grid;
+  gap: 0.25rem;
+}
+.ads-cert__name {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color 160ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .ads-cert__name:hover {
+    text-decoration-color: currentColor;
+  }
+}
+.ads-cert__meta {
+  color: var(--muted);
+  font-size: 0.875rem;
 }
 
 .ads-contact__text {

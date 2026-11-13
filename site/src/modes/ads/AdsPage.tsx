@@ -1,6 +1,6 @@
 // Ads — "control room". Dark ink, amber accent, Geist with Geist Mono tabular figures.
 // Order: hero, KPI strip, experience timeline, what I do, toolkit, contact.
-import { adsHero, amazonTools, credentials, experience, kpis, services, tools } from '../../content/ads';
+import { adsHero, amazonTools, credentials, earlierRoles, experience, kpis, services, tools } from '../../content/ads';
 import { profile } from '../../content/profile';
 
 export function AdsPage() {
@@ -64,6 +64,42 @@ export function AdsPage() {
             </li>
           ))}
         </ol>
+        <h3 className="ads-earlier__title">Before Amazon</h3>
+        <ul className="ads-earlier" role="list">
+          {earlierRoles.map((r) => (
+            <li key={r.org} className="ads-earlier__row">
+              <span className="ads-earlier__when tabular">{r.dates}</span>
+              <span>
+                <span className="ads-earlier__org">{r.org}</span>
+                <span className="ads-role__place">
+                  {' · '}
+                  {r.title}, {r.place}
+                </span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="ads-section" aria-labelledby="ads-cert-title">
+        <header className="ads-section__head">
+          <h2 id="ads-cert-title" className="ads-section__title">
+            Certifications
+          </h2>
+        </header>
+        <ul className="ads-certs" role="list">
+          {credentials.map((c) => (
+            <li key={c.name} className="ads-cert">
+              <a className="ads-cert__name" href={c.href} rel="noopener" target="_blank">
+                {c.name}
+                <span className="sr-only-text"> (verify, opens in a new tab)</span>
+              </a>
+              <span className="ads-cert__meta">
+                {c.issuer} · {c.when}
+              </span>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="ads-section" aria-labelledby="ads-do-title">
@@ -116,13 +152,7 @@ export function AdsPage() {
             </li>
           ))}
         </ul>
-        <p className="ads-cred">
-          {credentials.map((c) => (
-            <span key={c.name}>
-              {c.name} <span className="tabular">{c.year}</span>
-            </span>
-          ))}
-        </p>
+
       </section>
 
       <section className="ads-section ads-contact" aria-labelledby="ads-contact-title">
