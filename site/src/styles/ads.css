@@ -83,6 +83,8 @@
 
 /* Key figures: plain numbers on a ruled row, no cards. */
 .ads-kpis__grid {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.75rem 1.5rem;
@@ -99,6 +101,23 @@
     grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 2rem;
   }
+}
+/* The particle bars rise behind the right-hand figures. A feathered wash in the page colour
+   sits under the whole row so the labels stay readable without drawing a box. */
+.ads-kpis__grid::before {
+  content: '';
+  position: absolute;
+  inset: -1.5rem -2rem -2rem;
+  z-index: -1;
+  background: var(--bg);
+  opacity: 0.82;
+  pointer-events: none;
+  --fade-y: linear-gradient(to bottom, transparent, #000 1.75rem, #000 calc(100% - 1.75rem), transparent);
+  --fade-x: linear-gradient(to right, transparent, #000 2rem, #000 calc(100% - 2rem), transparent);
+  -webkit-mask-image: var(--fade-y), var(--fade-x);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--fade-y), var(--fade-x);
+  mask-composite: intersect;
 }
 .ads-kpi {
   display: flex;
@@ -237,8 +256,29 @@
 }
 
 /* Toolkit: one running line of names, wrapping like a sentence. */
+.ads-apps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+.ads-app {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+.ads-app__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 0.3125rem;
+  /* Keeps light-edged icons from bleeding into the dark page. */
+  outline: 1px solid rgb(255 255 255 / 0.08);
+  outline-offset: -1px;
+}
 .ads-tools {
   max-width: 46rem;
+  color: var(--muted);
   line-height: 1.7;
 }
 .ads-tool {

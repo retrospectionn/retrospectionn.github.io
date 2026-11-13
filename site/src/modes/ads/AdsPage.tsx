@@ -1,6 +1,6 @@
 // Ads — "control room". Dark ink, amber accent, Geist with Geist Mono tabular figures.
 // Order: hero, KPI strip, experience timeline, what I do, toolkit, contact.
-import { adsHero, credentials, experience, kpis, services, tools } from '../../content/ads';
+import { adsHero, amazonTools, credentials, experience, kpis, services, tools } from '../../content/ads';
 import { profile } from '../../content/profile';
 
 export function AdsPage() {
@@ -88,6 +88,22 @@ export function AdsPage() {
             Toolkit
           </h2>
         </header>
+        <ul className="ads-apps" role="list">
+          {amazonTools.map((t) => (
+            <li key={t.name} className="ads-app">
+              <img
+                className="ads-app__icon"
+                src={`${import.meta.env.BASE_URL}media/tools/${t.icon}.webp`}
+                alt=""
+                width={20}
+                height={20}
+                loading="lazy"
+                decoding="async"
+              />
+              {t.name}
+            </li>
+          ))}
+        </ul>
         <ul className="ads-tools" role="list">
           {tools.map((t, i) => (
             <li key={t} className="ads-tool">

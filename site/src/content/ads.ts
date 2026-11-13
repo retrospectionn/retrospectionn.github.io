@@ -96,12 +96,19 @@ export const services: Service[] = [
   },
 ];
 
+/** Amazon tools shown with their icon (from each tool's own site favicon). */
+export const amazonTools: { name: string; icon: string }[] = [
+  { name: 'Helium10', icon: 'helium10' },
+  { name: 'DataDive', icon: 'datadive' },
+  { name: 'Sellerboard', icon: 'sellerboard' },
+  { name: 'Keepa', icon: 'keepa' },
+  { name: 'm19', icon: 'm19' },
+];
+
 export const tools: string[] = [
   'Amazon Seller Central',
   'Vendor Central',
-  'Helium10',
   'SellerSprite',
-  'DataDive',
   'Teikametrics Flywheel',
   'Excel',
   'RStudio',
