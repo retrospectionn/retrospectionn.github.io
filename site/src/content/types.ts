@@ -15,8 +15,6 @@ export interface Role {
   /** Omitted when the source does not give dates (e.g. Upscale Valley). */
   dates?: string;
   points: string[];
-  /** Short metric chips shown on the Ads timeline. Each must restate a point above. */
-  chips?: string[];
 }
 
 export interface Kpi {

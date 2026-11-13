@@ -39,7 +39,6 @@ export const experience: Role[] = [
       'Led daily strategic and technical updates with North American clients.',
       'Worked from Inventory, Brand Insight and FBA reports to improve ad performance.',
     ],
-    chips: ['$55k+/mo spend', '8 accounts', '$475k+ sales', '+29% profitability'],
   },
   {
     org: 'Upscale Valley Pvt. Ltd.',
@@ -51,7 +50,6 @@ export const experience: Role[] = [
       'Negotiated with suppliers and handled freight forwarding from China.',
       'Managed 400+ campaigns across 70+ products.',
     ],
-    chips: ['10 launches', '4 brands', '400+ campaigns'],
   },
   {
     org: "Aphrodite's Marketing Inc.",
@@ -64,7 +62,6 @@ export const experience: Role[] = [
       'Over $300,000 in monthly sales during peak season; 400+ campaigns across 70+ products.',
       'Gave guest lectures for students at an affiliated company.',
     ],
-    chips: ['2.3 ROAS', '$300k+/mo peak', '$1.2M valuation'],
   },
   {
     org: 'Code Informatics Pvt. Ltd.',
@@ -77,7 +74,6 @@ export const experience: Role[] = [
       'Handled shipments, design feedback and accounts on Vendor and Seller marketplaces.',
       'Ran training on advanced Excel, conflict management and communication.',
     ],
-    chips: ['Team of 4', '35+ stores', '65+ A+ sections'],
   },
 ];
 

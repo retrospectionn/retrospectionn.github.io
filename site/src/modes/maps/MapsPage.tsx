@@ -1,5 +1,4 @@
-// Maps — "map sheet". Deep green-black, contour motif, IBM Plex Sans + Plex Mono.
-// Legend panel, coordinate readout for Islamabad, tile grid with imagery, field work, tools.
+// Maps. Deep green-black, IBM Plex Sans + Plex Mono, over the live Islamabad terrain.
 import { formatDate, mapsArticles } from '../../content/articles';
 import {
   fieldWork,
@@ -22,53 +21,26 @@ const legend = [
   { id: 'mp-tools', sym: 'diamond', label: 'Tools' },
 ] as const;
 
+const coverArticles = mapsArticles.filter((a) => a.cover);
+const textArticles = mapsArticles.filter((a) => !a.cover);
+
 function Sym({ kind }: { kind: (typeof legend)[number]['sym'] }) {
   return <span className={`mp-sym mp-sym--${kind}`} aria-hidden="true" />;
-}
-
-function Contours() {
-  // Static decorative contour motif (no data meaning). Phase 3 adds the real terrain field.
-  const rings = [0, 1, 2, 3, 4, 5, 6, 7];
-  return (
-    <svg className="mp-contours" viewBox="0 0 600 400" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
-      {rings.map((i) => (
-        <path
-          key={i}
-          d={`M ${-40 + i * 6} ${300 - i * 22} C ${120 + i * 10} ${200 - i * 30}, ${240 - i * 4} ${330 - i * 26}, ${380 + i * 8} ${210 - i * 18} S ${600 - i * 6} ${120 - i * 12}, ${660} ${150 - i * 20}`}
-          fill="none"
-          strokeWidth={i % 4 === 0 ? 1.4 : 0.8}
-        />
-      ))}
-    </svg>
-  );
 }
 
 export function MapsPage() {
   return (
     <div className="mp">
       <section className="mp-sheet" aria-labelledby="mp-title">
-        <Contours />
         <div className="mp-sheet__head">
-          <p className="mp-label enter enter--fade">Sheet 01 · {mapsHero.coords.place}</p>
           <h1 id="mp-title" className="mp-title enter">
             {profile.name}
             <span className="mp-title__role">{mapsHero.role}</span>
           </h1>
           <p className="mp-summary enter enter--1">{mapsHero.summary}</p>
-        </div>
-        <div className="mp-readout enter enter--fade enter--2" aria-label={`Coordinates of ${mapsHero.coords.place}`}>
-          <div>
-            <span className="mp-readout__k">LAT</span>
-            <span className="mp-readout__v tabular">{mapsHero.coords.lat}</span>
-          </div>
-          <div>
-            <span className="mp-readout__k">LON</span>
-            <span className="mp-readout__v tabular">{mapsHero.coords.lon}</span>
-          </div>
-          <div>
-            <span className="mp-readout__k">PLACE</span>
-            <span className="mp-readout__v">{mapsHero.coords.place}, Pakistan</span>
-          </div>
+          <p className="mp-coords tabular enter enter--fade enter--2">
+            {mapsHero.coords.lat}, {mapsHero.coords.lon} · {mapsHero.coords.place}
+          </p>
         </div>
       </section>
 
@@ -158,24 +130,41 @@ export function MapsPage() {
             <h2 id="mp-articles-title" className="mp-section__title">
               <Sym kind="circle" /> Maps and articles
             </h2>
-            <ul className="mp-tiles">
-              {mapsArticles.map((a, i) => (
-                <li key={a.slug} className="mp-tile">
-                  <a className="mp-tile__link" href={a.link} rel="noopener" target="_blank">
-                    <div className="mp-tile__frame">
-                      {a.cover && <img src={a.cover} alt="" loading="lazy" className="mp-tile__img" />}
-                      <span className="mp-tile__ref tabular">{String.fromCharCode(65 + i)}{i + 1}</span>
-                    </div>
-                    <div className="mp-tile__body">
-                      <p className="mp-tile__date tabular">{formatDate(a.date)}</p>
-                      <h3 className="mp-tile__title">{a.title}</h3>
-                      <p className="mp-tile__summary">{a.summary}</p>
-                    </div>
-                    <span className="sr-only-text"> (Medium, opens in a new tab)</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            {coverArticles.length > 0 && (
+              <ul className="mp-tiles">
+                {coverArticles.map((a) => (
+                  <li key={a.slug} className="mp-tile">
+                    <a className="mp-tile__link" href={a.link} rel="noopener" target="_blank">
+                      <div className="mp-tile__frame">
+                        <img src={a.cover ?? undefined} alt="" loading="lazy" className="mp-tile__img" />
+                      </div>
+                      <div className="mp-tile__body">
+                        <p className="mp-tile__date tabular">{formatDate(a.date)}</p>
+                        <h3 className="mp-tile__title">{a.title}</h3>
+                        <p className="mp-tile__summary">{a.summary}</p>
+                      </div>
+                      <span className="sr-only-text"> (Medium, opens in a new tab)</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {textArticles.length > 0 && (
+              <ul className="mp-articles">
+                {textArticles.map((a) => (
+                  <li key={a.slug} className="mp-article">
+                    <p className="mp-article__date tabular">{formatDate(a.date)}</p>
+                    <h3 className="mp-article__title">
+                      <a className="text-link" href={a.link} rel="noopener" target="_blank">
+                        {a.title}
+                        <span className="sr-only-text"> (Medium, opens in a new tab)</span>
+                      </a>
+                    </h3>
+                    <p className="mp-article__summary">{a.summary}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
             <p className="mp-attrib">Cover images are the author’s own maps. Where OpenStreetMap data is shown: {osmAttribution}.</p>
           </section>
 
@@ -227,8 +216,11 @@ export function MapsPage() {
               <Sym kind="diamond" /> Tools
             </h2>
             <ul className="mp-tools">
-              {mapTools.map((t) => (
-                <li key={t}>{t}</li>
+              {mapTools.map((t, i) => (
+                <li key={t}>
+                  {i > 0 && <span aria-hidden="true">{' · '}</span>}
+                  {t}
+                </li>
               ))}
             </ul>
           </section>

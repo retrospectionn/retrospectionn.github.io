@@ -7,10 +7,6 @@ export function AdsPage() {
   return (
     <div className="ads">
       <section className="ads-hero" aria-labelledby="ads-title">
-        <p className="ads-eyebrow enter enter--fade">
-          <span className="ads-dot" aria-hidden="true" />
-          {adsHero.role} · {profile.location}
-        </p>
         <h1 id="ads-title" className="ads-hero__title enter">
           {profile.name}
           <span className="ads-hero__role">{adsHero.role}</span>
@@ -43,30 +39,20 @@ export function AdsPage() {
 
       <section id="ads-experience" className="ads-section" aria-labelledby="ads-exp-title">
         <header className="ads-section__head">
-          <span className="ads-section__index tabular">01</span>
           <h2 id="ads-exp-title" className="ads-section__title">
             Experience
           </h2>
         </header>
-        <ol className="ads-timeline">
+        <ol>
           {experience.map((r) => (
             <li key={r.org} className="ads-role">
-              <div className="ads-role__when tabular">{r.dates ?? ''}</div>
+              {r.dates && <p className="ads-role__when tabular">{r.dates}</p>}
               <div className="ads-role__body">
                 <h3 className="ads-role__org">{r.org}</h3>
                 <p className="ads-role__title">
                   {r.title}
                   {r.place && <span className="ads-role__place"> · {r.place}</span>}
                 </p>
-                {r.chips && (
-                  <ul className="ads-chips" aria-label="Highlights">
-                    {r.chips.map((c) => (
-                      <li key={c} className="ads-chip tabular">
-                        {c}
-                      </li>
-                    ))}
-                  </ul>
-                )}
                 {r.points.length > 0 && (
                   <ul className="ads-role__points">
                     {r.points.map((p) => (
@@ -82,33 +68,35 @@ export function AdsPage() {
 
       <section className="ads-section" aria-labelledby="ads-do-title">
         <header className="ads-section__head">
-          <span className="ads-section__index tabular">02</span>
           <h2 id="ads-do-title" className="ads-section__title">
             What I do
           </h2>
         </header>
-        <ul className="ads-services">
-          {services.map((s, i) => (
-            <li key={s.title} className="ads-service">
-              <span className="ads-service__n tabular">{String(i + 1).padStart(2, '0')}</span>
-              <h3 className="ads-service__title">{s.title}</h3>
-              <p className="ads-service__body">{s.body}</p>
-            </li>
+        <dl className="ads-services">
+          {services.map((s) => (
+            <div key={s.title} className="ads-service">
+              <dt className="ads-service__title">{s.title}</dt>
+              <dd className="ads-service__body">{s.body}</dd>
+            </div>
           ))}
-        </ul>
+        </dl>
       </section>
 
       <section className="ads-section" aria-labelledby="ads-tools-title">
         <header className="ads-section__head">
-          <span className="ads-section__index tabular">03</span>
           <h2 id="ads-tools-title" className="ads-section__title">
             Toolkit
           </h2>
         </header>
-        <ul className="ads-tools">
-          {tools.map((t) => (
+        <ul className="ads-tools" role="list">
+          {tools.map((t, i) => (
             <li key={t} className="ads-tool">
-              {t}
+              {i > 0 && (
+                <span className="ads-tools__sep" aria-hidden="true">
+                  {' · '}
+                </span>
+              )}
+              <span className="ads-tool__name">{t}</span>
             </li>
           ))}
         </ul>
@@ -123,7 +111,6 @@ export function AdsPage() {
 
       <section className="ads-section ads-contact" aria-labelledby="ads-contact-title">
         <header className="ads-section__head">
-          <span className="ads-section__index tabular">04</span>
           <h2 id="ads-contact-title" className="ads-section__title">
             Contact
           </h2>
