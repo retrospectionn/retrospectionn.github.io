@@ -4,6 +4,7 @@ import {
   fieldWork,
   forks,
   highlights,
+  mapCertificates,
   mapTools,
   mapsHero,
   osmAttribution,
@@ -18,7 +19,7 @@ const legend = [
   { id: 'mp-projects', sym: 'square', label: 'Projects' },
   { id: 'mp-articles', sym: 'circle', label: 'Maps and articles' },
   { id: 'mp-field', sym: 'triangle', label: 'Field work' },
-  { id: 'mp-tools', sym: 'diamond', label: 'Tools' },
+  { id: 'mp-tools', sym: 'diamond', label: 'Tools and training' },
 ] as const;
 
 const coverArticles = mapsArticles.filter((a) => a.cover);
@@ -213,13 +214,24 @@ export function MapsPage() {
 
           <section id="mp-tools" className="mp-section" aria-labelledby="mp-tools-title">
             <h2 id="mp-tools-title" className="mp-section__title">
-              <Sym kind="diamond" /> Tools
+              <Sym kind="diamond" /> Tools and training
             </h2>
             <ul className="mp-tools">
               {mapTools.map((t, i) => (
                 <li key={t}>
                   {i > 0 && <span aria-hidden="true">{' · '}</span>}
                   {t}
+                </li>
+              ))}
+            </ul>
+            <ul className="mp-certs" role="list">
+              {mapCertificates.map((c) => (
+                <li key={c.name} className="mp-cert">
+                  <p className="mp-cert__name">{c.name}</p>
+                  <p className="mp-cert__meta tabular">
+                    {c.issuer} · {c.when}
+                  </p>
+                  <p className="mp-cert__body">{c.body}</p>
                 </li>
               ))}
             </ul>

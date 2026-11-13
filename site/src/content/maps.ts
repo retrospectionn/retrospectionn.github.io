@@ -112,4 +112,20 @@ export const mapTools: string[] = [
   'Night-light imagery',
 ];
 
+/** Esri courses, from LinkedIn (no public credential links listed). Newest first. */
+export const mapCertificates: { name: string; issuer: string; when: string; body: string }[] = [
+  {
+    name: 'ArcGIS Imagery: Foundations and Frontiers',
+    issuer: 'Esri MOOC',
+    when: 'Dec 2025',
+    body: 'Working with satellite and aerial imagery in ArcGIS.',
+  },
+  {
+    name: 'Cartography',
+    issuer: 'Esri MOOC',
+    when: 'Oct 2025',
+    body: 'Map-making in ArcGIS: labelling, visualisation and time-series analysis.',
+  },
+];
+
 export const osmAttribution = 'Map data © OpenStreetMap contributors';
