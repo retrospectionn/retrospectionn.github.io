@@ -104,6 +104,12 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  /* The particle field can pass behind the right-hand figures; a soft halo in the page
+     colour keeps the small labels readable without drawing a box. */
+  text-shadow:
+    0 0 3px var(--bg),
+    0 0 10px var(--bg),
+    0 0 18px var(--bg);
 }
 .ads-kpi__value {
   order: 1;
